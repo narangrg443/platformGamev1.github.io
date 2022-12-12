@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title></title>
+  <style>
+    body {
+      background: black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" style="border :0px solid black;background:grey; max-width:100%;max-height:100%;"></canvas>
+
+  <script type="text/javascript" src="Map.js">
+  </script>
+  <script type="text/javascript" src="Map1.js">
+  </script>
+  <script type="text/javascript" src="canvas.js">
+  </script>
+
+  <script type="text/javascript" src="key_event.js">
+  </script>
+  <script type="text/javascript" src="touchButton.js"></script>
+  <script type="text/javascript" src="loadImage.js"></script>
+
+  <script type="text/javascript" src="player.js"></script>
+
+  <script type="text/javascript" src="audio.js"></script>
+
+  <script type="text/javascript">
+
+    //creating buttons
+
+    /*
+https://narangrg443.github.io/platformGame.github.io/
+
+*/
+
+
+    let start = Date.now();
+    let end;
+    let diff;
+    let fps = 0;
+    let Fps;
+    let rows = 9 //7/851=42.55
+    let cols = 20 //20/393=56.14
+    let boxX = 43//screen.availWidth/cols; //42.55=20/9
+    let boxY = 44//screen.availHeight/rows; //43.66
+    //  console.log(boxX, boxY)
+    let STAGE = 0;
+    let player = new Player(0, 0, boxX, boxY);
+    let Brick = [];
+    let Enemy = [];
+    let Coins = [];
+    let Back = [];
+    let WoodenBox = [];
+    let dx = 0; //button dx
+    let dy = 0; //button
+    let bounce=-0.5; //button
+
+let Sound2=[];
+    let coins_No = 0;
+
+    let point1 = 42.55*20; //851
+    const Map_width = 851;
+    let MapNo = 0;
+    let dist = 0;
+    let collisionSide = "";
+    let no = 0;
+    let coinsNo = 0;
+    let bug1No = 0;
+    let Map_stage = 1;
+    let objAssigned = false;
+    let Bulet = [];
+    let fired = false;
+    let Map = 2;
+    let delay = 0;
+    let B = []; //bottons
+    //
+    let P = []; //brick pieces
+    let b_dx; let b_dy; Brick_animate = false; // location of collidied brick
+
+
+
+    window.onload = animate();
+
+    function animate() {
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      //  if (no < 40) {
+
+      canvas.width = screen.availWidth;
+      canvas.height = screen.availHeight;
+
+
+
+
+      //  }
+      //    if (window.onresize)no = 0;
+      //froce to make landsscape mode
+      if (window.innerHeight > window.innerWidth) {
+        alert ("please switch to landscape mode or simply rotate your device")
+
+
+      } else {
+        //after device is n landscape mode
+        if (canvas.width !== screen.availWidth) {
+
+          canvas.width = screen.availWidth;
+          canvas.height = screen.availHeight;
+
+        }
+      }
+
+      switch (STAGE) {
+        case 0:
+          drawStage1();
+          break;
+        case 1:
+
+          switch (Map) {
+          case 1: done(Mapa1, Brick, Enemy, Coins, WoodenBox); break;
+          case 2: done(Map2, Brick, Enemy, Coins, WoodenBox); break;
+          }
+
+
+          nextMap();
+          playerdead();
+          keyControl();
+          fire(1);
+          //  sound();
+          collisionCheck(player, Brick, Enemy, Coins, Bulet);
+          addSound();
+
+          limitPlayerAbove(player);
+          BrickAnimate();
+
+          gravity(player);
+          jump(player);
+
+          renderImage();
+
+
+
+          rewardLife();
+          drawHeart(player.life);
+          scoreboard();
+
+          drawButton(B);
+          fpsShow();
+
+          showText(0);
+
+
+
+          break;
+        case 3: endM(); break;
+      }
+      window.requestAnimationFrame(animate);
+
+
+    }
+    key_event(key)
+
+  </script>
+
+  <script type="text/javascript" src="assignElement.js"></script>
+  <script type="text/javascript" src="physic.js"></script>
+  <script type="text/javascript" src="collision.js"></script>
+
+  <script type="text/javascript" src="render.js"></script>
+
+  <script type="text/javascript" src="end.js"></script>
+
+</body>
+</html>
