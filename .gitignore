@@ -1,0 +1,27 @@
+# Dependency directories
+node_modules/
+
+# Optional: Logs and databases
+*.log
+*.sqlite
+
+# Optional: OS generated files
+.DS_Store
+Thumbs.db
+
+# Optional: Environment variables file
+.env
+
+# Optional: npm debugging logs
+npm-debug.log
+
+# Optional: Editor files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.idea/
+
+# Optional: Build output
+build/
+dist/
+

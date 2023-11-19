@@ -90,7 +90,7 @@ document.addEventListener("click",fullscreen);
 
 
 function fullscreen() {
-
+/*
   if (!document.fullscreenElement) {
     if (canvas.requestFullscreen) {
 
@@ -104,4 +104,6 @@ function fullscreen() {
     //after fullscrren show game menu
     STAGE = 1;
   }
+  */
+  STAGE=1;
 }
