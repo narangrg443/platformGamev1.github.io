@@ -1,16 +1,18 @@
-
+let dx=0;
+let dy=0;
+ let bounce=-0.5;
+ 
    
 
   class TouchButton{
     constructor(x,y,r,type){
-    
 if(type===undefined)this.type="button";
 this.type=type;
 
       this.x=x;
       this.y=y;
       this.r=r;
-      this.opacity=.5;
+      this.opacity=1;
       this.color="black";
       this.R=Math.round(this.r*3.5);
       this.X=this.x;
@@ -76,13 +78,11 @@ this.a.x=this.x-this.X; this.a.y=this.y-this.Y
     ctx.restore();
     
   }else if(this.type=="button"){
-    ctx.save();
     ctx.beginPath();
     ctx.globalAlpha=this.opacity;
     ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
     ctx.stroke();
     ctx.closePath();
-    ctx.restore()
   }else{
     console.log("please put correct text analog or button");
   }
@@ -99,18 +99,10 @@ this.a.x=this.x-this.X; this.a.y=this.y-this.Y
     
   }
   
-  /* 
-let B=[new TouchButton(100,300,20,"analog"),new TouchButton(window.innerWidth-150,300,30,"button"),new TouchButton(window.innerWidth-50,280,30,"button")];
-
-
- B[0].code="analog";
- B[1].code="B";
- B[2].code="A";
-        
- 
        
-touchEvent(B,key);
- */     
+       
+       
+      
     function touchEvent(B,key){  
       
    canvas.addEventListener('touchstart',e=>{
@@ -319,7 +311,7 @@ B.forEach(btn=>{
     
   
   
-  function drawButton(B){
+  function drawButton(){
       //drawing buttons
           
           B.forEach(e=> {

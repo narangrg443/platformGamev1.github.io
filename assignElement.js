@@ -1,86 +1,72 @@
-function done(m, b, e, w) {
-  Map1 = m;
-  Brick = b;
-  Enemy = e;
-  WoodenBox = w;
-  if (!objAssigned) {
+  function done(m, b,e,w) {
+      Map1 = m;
+      Brick = b;
+      Enemy=e;
+      WoodenBox=w;
+      if (!objAssigned) {
+      B=[new TouchButton(100,300,20,"analog"),new TouchButton(screen.availWidth-150,300,30,"button"),new TouchButton(screen.availWidth-50,280,30,"button")];
 
 
-    B = [new TouchButton(100, 300, 20, "analog"),
-      new TouchButton(window.innerWidth-150, 300, 30, "button"),
-      new TouchButton(window.innerWidth-50, 280, 30, "button")];
-
-
-    B[0].code = "analog";
-    B[1].code = "B";
-    B[2].code = "A";
-
-
-
-    touchEvent(B, key);
-
-
-    player.vy = 0;
-    player.dead = false;
-    while (Bulet.length) {
+ B[0].code="analog";
+ B[1].code="B";
+ B[2].code="A";
+         touchEvent(B,key);
+     
+    player.vy=0;
+    player.dead=false;
+    while(Bulet.length){
       Bulet.pop();
     }
-    while (WoodenBox.length) {
+    while(WoodenBox.length){
       WoodenBox.pop();
     }
-    while (Coins.length) {
+    while(Coins.length){
       Coins.pop();
     }
-    while (Brick.length) {
-      Brick.pop();
-    }
-    while (Enemy.length) {
-      Enemy.pop();
-    }
-    for (let m = 0; m < Map1.length; m++) {
-      for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-          posX = (m*Map_width)+(j*boxX); //multipy 851 by Map no to get posx;
-          posY = i*boxY;
-          if (Map1[m][i][j] == 1) {
-            Brick.push(new Box(posX, posY, boxX, boxY)); //brick
-            Brick[Brick.length-1].mapNo = m;
-            Brick[Brick.length-1].type = 1;
-          } else if (Map1[m][i][j] == 3) {
-            //wooden box
-            Brick.push(new Box(posX, posY, boxX, boxY)); //brick
-            Brick[Brick.length-1].mapNo = m;
-            Brick[Brick.length-1].type = 3;
-          } else if (Map1[m][i][j] == 9) {
-            //player
-            player.x = posX; player.y = posY
-          } else if (Map1[m][i][j] == 2) {
+        while (Brick.length) {
+          Brick.pop();
+        }
+        while(Enemy.length){
+          Enemy.pop();
+        }
+        for (let m = 0; m < Map1.length; m++) {
+          for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+              posX = (m*Map_width)+(j*boxX); //multipy 851 by Map no to get posx;
+              posY = i*boxY;
+              if (Map1[m][i][j] == 1) {
+                Brick.push(new Box(posX, posY, boxX, boxY));//brick
+                Brick[Brick.length-1].mapNo = m;
+                Brick[Brick.length-1].type = 1;
+              } else if (Map1[m][i][j] == 3) {              //wooden box
+                Brick.push(new Box(posX, posY, boxX, boxY));//brick
+                Brick[Brick.length-1].mapNo = m;
+                Brick[Brick.length-1].type = 3;
+              } else if (Map1[m][i][j] == 9) {                //player 
+                player.x = posX; player.y = posY
+              } else if (Map1[m][i][j] == 2) {
 
-            Brick.push(new Box(posX, posY, boxX, boxY));
-            Brick[Brick.length-1].mapNo = m;
-            Brick[Brick.length-1].type = 2; //invisilble box
-            Brick[Brick.length-1].visible = 0;
+                Brick.push(new Box(posX, posY, boxX, boxY));
+                Brick[Brick.length-1].mapNo = m;
+                Brick[Brick.length-1].type = 2;               //invisilble box
+                Brick[Brick.length-1].visible= 0;
+              
+              } else if (Map1[m][i][j] == 8) {               //bug enemy
 
-          } else if (Map1[m][i][j] == 8) {
-            //bug enemy
+                Enemy.push(new Bug(posX, posY, boxX-10, boxY-15)); //reduce bug size
+                Enemy[Enemy.length-1].mapNo = m;
+                Enemy[Enemy.length-1].type = 8;
 
-            Enemy.push(new Bug(posX, posY, boxX, boxY)); //reduce bug size
-            Enemy[Enemy.length-1].mapNo = m;
-            Enemy[Enemy.length-1].type = 8;
-            Enemy[Enemy.length-1].visible = true;
-            Enemy[Enemy.length-1].id = Enemy.length-1;
-          } else if (Map1[m][i][j] == 6) {
-            //coins
-            Coins.push(new Coin(posX, posY, boxX, boxY));
-            Coins[Coins.length-1].mapNo = m;
-            Coins[Coins.length-1].type = 6;
-
+              }else if(Map1[m][i][j]==6){                     //coins 
+                  Coins.push(new Coin(posX, posY, boxX, boxY)); 
+                Coins[Coins.length-1].mapNo = m;
+                Coins[Coins.length-1].type = 6;
+                
+              }
+            }
           }
+
         }
       }
-
+      objAssigned = true;
     }
-  }
-  objAssigned = true;
-
-}

@@ -76,8 +76,7 @@
       return temp;
       }
       leftNormal(){
-      let temp=new Vector(-this.y,this.x);
-        return temp;
+        let temp=new Vector(-this.y,this.x);
       }
     }
     
@@ -96,7 +95,7 @@
         this.y+=this.vy;
         
         if(this.x>=canvas.width-this.r){this.x=canvas.width-this.r;this.vx*=-1;}
-       else if(this.x<=this.r){this.x=this.r;this.vx*=-1}
+       else if(this.x<=this.r){this.x=this.r;this.vx*=-1};
        if(this.y>=canvas.height-this.r){this.y=canvas.height-this.r;this.vy*=-1;}
        else if(this.y<=this.r){this.y=this.r;this.vy*=-1;}
         
