@@ -84,9 +84,9 @@ function drawStage1() {
 }
 
 
-document.addEventListener("touchstart", fullscreen);
-document.addEventListener("keydown",fullscreen);
-document.addEventListener("click",fullscreen);
+canvas.addEventListener("touchstart", fullscreen);
+canvas.addEventListener("keydown",fullscreen);
+canvas.addEventListener("click",fullscreen);
 
 
 function fullscreen() {

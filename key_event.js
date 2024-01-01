@@ -12,6 +12,9 @@ window.addEventListener('keydown',function(e){
   if(e.keyCode=="40")key.down=true;
   if(e.keyCode=="13")key.enter=true;
   if(e.keyCode=="32")key.space=true;
+  if(e.key==='s')key.space=true;
+  if(e.key==='d')key.enter=true;
+  
 });
 
 window.addEventListener('keyup',function(e){
@@ -22,6 +25,8 @@ window.addEventListener('keyup',function(e){
   if(e.keyCode=="40")key.down=false;
   if(e.keyCode=="13")key.enter=false;
   if(e.keyCode=="32")key.space=false;
+  if(e.key==='s')key.space=false;
+  if(e.key==='d')key.enter=false;
   
 });
 }
